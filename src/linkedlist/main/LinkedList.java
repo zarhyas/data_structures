@@ -36,7 +36,7 @@ public class LinkedList {
 
     // Sentinels are placeholder nodes that don't store actual data but simplify handling edge cases in the linked list
     // we did that by replacing top with top.next
-    public Cell findCellBefore(Cell head, int target){
+    public Cell findCellBefore(int target){
         while(head.next != null){
             if(head.next.value == target) return head;
             head = head.next;
@@ -45,12 +45,11 @@ public class LinkedList {
     }
 
     public Cell findCell(int value) {
-        Cell current = head;
-        while (current != null) {
-            if (current.value == value) {
-                return current;
+        while (head != null) {
+            if (head.value == value) {
+                return head;
             }
-            current = current.next;
+            head = head.next;
         }
         return null;
     }
@@ -65,12 +64,12 @@ public class LinkedList {
         }
         return current.value;
     }
-    public void addAtBeginning(Cell head, Cell newCell){
+    public void addAtBeginning(Cell newCell){
         newCell.next = head.next;
         head.next = newCell;
         size++;
     }
-    public void addAtEnd(Cell head, Cell newCell){
+    public void addAtEnd(Cell newCell){
         while(head.next!=null){
             head = head.next;
         }
@@ -97,4 +96,6 @@ public class LinkedList {
         targetCell.next = null;
         size--;
     }
+
+
 }
