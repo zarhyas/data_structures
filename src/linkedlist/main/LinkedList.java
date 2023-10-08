@@ -67,12 +67,13 @@ public class LinkedList {
         size++;
     }
     public void addAtEnd(Cell newCell){
-        Cell current = head;
+        Cell current = head.next;
         while(current.next != null){
             current = current.next;
         }
         current.next = newCell;
         newCell.next = null;
+        size++;
     }
 
     public void insertAfter(Cell cellBefore, int value){
@@ -96,7 +97,7 @@ public class LinkedList {
     }
     // insert a cell into a (asc) sorted linked list
     public void insertCellToSorted(Cell newCell){
-        Cell current = head;
+        Cell current = head.next;
 
         while(current != null && current.next.value < newCell.value){
             current = current.next;
