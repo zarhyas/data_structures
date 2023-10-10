@@ -1,6 +1,6 @@
 package linkedlist.main;
 
-public class LinkedList {
+public class LinkedList implements Comparable<LinkedList>{
     private Cell head;
     private int size;
     public LinkedList(){
@@ -37,6 +37,13 @@ public class LinkedList {
     public void clear(){
         head = new Cell(-1);
         size = 0;
+    }
+
+    public void populate(int[] values){
+        for (int value: values){
+            addByValue(value);
+        }
+        size = values.length;
     }
     public void addByValue(int value){
         Cell current = head;
@@ -140,15 +147,15 @@ public class LinkedList {
         return copy;
     }
 
-    public static LinkedList insertionSort(LinkedList list){
-        Cell current = list.getHead().next;
+    public void insertionSort(){
+        Cell current = head.next;
 
         while(current != null && current.next != null){
             if(current.next.value < current.value) {
                 Cell toInsert = current.next;       // first keep
                 current.next = current.next.next;   // then remove the node to be inserted
 
-                Cell restart = list.getHead();
+                Cell restart = head;
 
                 // loop to find insertion point
                 while (restart.next != null && restart.next.value < toInsert.value) {
@@ -163,7 +170,6 @@ public class LinkedList {
                 current = current.next;
                 }
             }
-        return list;
     }
 
     @Override
@@ -182,4 +188,21 @@ public class LinkedList {
         return builder.toString();
     }
 
+
+    @Override
+    public int compareTo(LinkedList list) {
+        Cell c1 = list.head;
+        Cell c2 = head;
+
+        while(c1.next != null && c2.next != null){
+            if(c1.next.value != c2.next.value) {
+                return c1.value - c2.value;
+            }
+                c1 = c1.next;
+                c2 = c2.next;
+        }
+        if(list.getSize() == size) return 0;
+        if(c1.next != null) return 1;
+        return -1;
+    }
 }
