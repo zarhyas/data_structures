@@ -140,6 +140,32 @@ public class LinkedList {
         return copy;
     }
 
+    public static LinkedList insertionSort(LinkedList list){
+        Cell current = list.getHead().next;
+
+        while(current != null && current.next != null){
+            if(current.next.value < current.value) {
+                Cell toInsert = current.next;       // first keep
+                current.next = current.next.next;   // then remove the node to be inserted
+
+                Cell restart = list.getHead();
+
+                // loop to find insertion point
+                while (restart.next != null && restart.next.value < toInsert.value) {
+                    restart = restart.next;
+                }
+
+                // insert the node
+                toInsert.next = restart.next;
+                restart.next = toInsert;
+            }
+            else {
+                current = current.next;
+                }
+            }
+        return list;
+    }
+
     @Override
     public String toString(){
         StringBuilder builder = new StringBuilder();
