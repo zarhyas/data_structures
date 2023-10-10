@@ -163,7 +163,7 @@ public class LinkedListTest {
         list.addByValue(5);
         list.addByValue(7);
 
-        LinkedList copy = LinkedList.copyList(list);
+        LinkedList copy = new LinkedList(list);
 
         Cell originalCurrent = list.getHead().next;
         Cell copyCurrent = copy.getHead().next;
@@ -189,5 +189,15 @@ public class LinkedListTest {
 
         list.addByValue(9);
         assertNotEquals(list.getSize(), other.getSize());
+    }
+
+    @Test
+    void testInsertionSort(){
+        list.populate(new int[]{34, 27, 3, 5, 31});
+        list.insertionSort();
+        LinkedList expected = new LinkedList();
+        expected.populate(new int[]{3, 5, 27, 31, 34});
+
+        assertEquals(0, list.compareTo(expected));
     }
 }

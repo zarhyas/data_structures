@@ -131,22 +131,6 @@ public class LinkedList implements Comparable<LinkedList>{
         current.next = newCell;
         size++;
     }
-
-    public static LinkedList copyList(LinkedList original){
-        LinkedList copy = new LinkedList();
-
-        Cell current = original.getHead().next;
-        Cell currentInCopy = copy.getHead();
-
-        while(current != null){
-            currentInCopy.next = new Cell(current.value);
-            currentInCopy = currentInCopy.next;
-            current = current.next;
-        }
-        currentInCopy.next = null;
-        return copy;
-    }
-
     public void insertionSort(){
         Cell current = head.next;
 
