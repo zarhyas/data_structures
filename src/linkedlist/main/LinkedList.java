@@ -8,6 +8,21 @@ public class LinkedList {
         this.size = 0;
     }
 
+    public LinkedList(LinkedList other) {
+        this.head = new Cell(-1);
+        Cell copy = other.head.next;
+        Cell original = this.head;
+        this.size = 0;
+
+        while (copy != null) {
+            original.next = new Cell(copy.value);
+            original = original.next;
+            copy = copy.next;
+            this.size++;
+        }
+        original.next = null;
+    }
+
     public int getSize(){
         return size;
     }
@@ -113,8 +128,8 @@ public class LinkedList {
     public static LinkedList copyList(LinkedList original){
         LinkedList copy = new LinkedList();
 
-        Cell current = original.head.next;
-        Cell currentInCopy = copy.head;
+        Cell current = original.getHead().next;
+        Cell currentInCopy = copy.getHead();
 
         while(current != null){
             currentInCopy.next = new Cell(current.value);

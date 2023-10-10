@@ -158,7 +158,6 @@ public class LinkedListTest {
 
     @Test
     public void testCopyList() {
-        LinkedList list = new LinkedList();
         list.addByValue(1);
         list.addByValue(3);
         list.addByValue(5);
@@ -177,5 +176,18 @@ public class LinkedListTest {
 
         assertNull(originalCurrent);
         assertNull(copyCurrent);
+    }
+
+    @Test
+    void testCopyConstructorSize(){
+        list.addByValue(2);
+        list.addByValue(5);
+        list.addByValue(8);
+        LinkedList other = new LinkedList(list);
+
+        assertEquals(list.getSize(), other.getSize());
+
+        list.addByValue(9);
+        assertNotEquals(list.getSize(), other.getSize());
     }
 }
