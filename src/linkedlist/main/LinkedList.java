@@ -12,6 +12,9 @@ public class LinkedList {
         return size;
     }
 
+    public Cell getHead(){
+        return head;
+    }
     public boolean isEmpty(){
         return size == 0;
     }
@@ -20,7 +23,7 @@ public class LinkedList {
         head = new Cell(-1);
         size = 0;
     }
-    public void add(int value){
+    public void addByValue(int value){
         Cell current = head;
         while (current.next != null){
             current = current.next;
@@ -61,12 +64,12 @@ public class LinkedList {
         }
         return current.value;
     }
-    public void addAtBeginning(Cell newCell){
+    public void prepend(Cell newCell){
         newCell.next = head.next;
         head.next = newCell;
         size++;
     }
-    public void addAtEnd(Cell newCell){
+    public void append(Cell newCell){
         Cell current = head.next;
         while(current.next != null){
             current = current.next;
@@ -106,4 +109,36 @@ public class LinkedList {
         current.next = newCell;
         size++;
     }
+
+    public static LinkedList copyList(LinkedList original){
+        LinkedList copy = new LinkedList();
+
+        Cell current = original.head.next;
+        Cell currentInCopy = copy.head;
+
+        while(current != null){
+            currentInCopy.next = new Cell(current.value);
+            currentInCopy = currentInCopy.next;
+            current = current.next;
+        }
+        currentInCopy.next = null;
+        return copy;
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder builder = new StringBuilder();
+        builder.append("Elements of the linked list: ");
+
+        Cell current = head.next;
+        while(current != null){
+            builder.append(current.value);
+            if (current.next != null) {
+                builder.append(" , ");
+            }
+            current = current.next;
+        }
+        return builder.toString();
+    }
+
 }
