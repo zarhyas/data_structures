@@ -245,4 +245,15 @@ public class LinkedListTest {
 
         assertEquals(0, list.compareTo(expected));
     }
+
+    @Test
+    void testReverseLinkedList(){
+        list.populate(new int[]{1, 14, 5, 5, 7});
+        list.reverse();
+
+        LinkedList expected = new LinkedList();
+        expected.populate(new int[]{7, 5, 5, 14, 1});
+
+        assertEquals(0, list.compareTo(expected));
+    }
 }

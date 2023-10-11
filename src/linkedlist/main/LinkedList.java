@@ -185,6 +185,20 @@ public class LinkedList implements Comparable<LinkedList>{
         }
     }
 
+    public void reverse() {
+        Cell prev = null;
+        Cell current = head.next;
+        Cell next;
+
+        while (current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        head.next = prev;
+    }
+
 
     @Override
     public String toString(){
@@ -210,7 +224,7 @@ public class LinkedList implements Comparable<LinkedList>{
 
         while(c1.next != null && c2.next != null){
             if(c1.next.value != c2.next.value) {
-                return c1.value - c2.value;
+                return c1.next.value - c2.next.value;
             }
                 c1 = c1.next;
                 c2 = c2.next;
