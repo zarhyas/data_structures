@@ -200,4 +200,49 @@ public class LinkedListTest {
 
         assertEquals(0, list.compareTo(expected));
     }
+    @Test
+    void testInsertionSortEmptyList() {
+        list.insertionSort();
+        LinkedList expected = new LinkedList();
+
+        assertEquals(0, list.compareTo(expected));
+    }
+
+    @Test
+    void testInsertionSortSingleElement() {
+        list.populate(new int[]{5});
+        list.insertionSort();
+        LinkedList expected = new LinkedList();
+        expected.populate(new int[]{5});
+
+        assertEquals(0, list.compareTo(expected));
+    }
+
+    @Test
+    void testSelectionSort() {
+        list.populate(new int[]{34, 27, 3, 5, 31});
+        list.selectionSort();
+        LinkedList expected = new LinkedList();
+        expected.populate(new int[]{3, 5, 27, 31, 34});
+
+        assertEquals(0, list.compareTo(expected));
+    }
+
+    @Test
+    void testSelectionSortEmptyList() {
+        list.selectionSort();
+        LinkedList expected = new LinkedList();
+
+        assertEquals(0, list.compareTo(expected));
+    }
+
+    @Test
+    void testSelectionSortSingleElement() {
+        list.populate(new int[]{5});
+        list.selectionSort();
+        LinkedList expected = new LinkedList();
+        expected.populate(new int[]{5});
+
+        assertEquals(0, list.compareTo(expected));
+    }
 }

@@ -156,6 +156,36 @@ public class LinkedList implements Comparable<LinkedList>{
             }
     }
 
+    public void selectionSort() {
+        Cell start = head;
+
+        while (start.next != null) {
+            Cell min = start.next;
+            Cell current = start.next.next;
+            Cell prevOfMin = start;
+            Cell prevOfCurrent = start.next;
+
+            // Find the minimum node in the remaining list
+            while (current != null) {
+                if (current.value < min.value) {
+                    min = current;
+                    prevOfMin = prevOfCurrent;
+                }
+                prevOfCurrent = current;
+                current = current.next;
+            }
+
+            if (min != start.next) {
+                prevOfMin.next = min.next;
+                min.next = start.next;
+                start.next = min;
+            }
+
+            start = start.next;
+        }
+    }
+
+
     @Override
     public String toString(){
         StringBuilder builder = new StringBuilder();
